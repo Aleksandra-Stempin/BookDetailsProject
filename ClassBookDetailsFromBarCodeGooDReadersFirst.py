@@ -97,7 +97,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
                     LC_isbnNoList = list(dict.fromkeys(LC_isbnNoList))
                     if len(LC_isbnNoList)>0:
                         # isbnNoListSucces = isbnNoListLC
-                        print("Lubimy czytac start")
+                        print("\nLubimy czytac start")
                         bd.OpenDriver(headlessMode)
                         bd.OpenGooglePage()
                         bd.AgreeGoogleCookies()
@@ -143,15 +143,15 @@ class BookDetailsFromBarCodeGooDReadersFirst():
                     failTotalPercent = (notFound/startCount) * 100
                     failTotalPercent = round(failTotalPercent, 2)
                     resumeTxt = """
-    summary
-    
-    total book count: {}
-    found by good readers: {}
-    found by lubimy czytać: {}
-    total found: {}
-    percent found: {}%
-    not found: {}
-    percent not found: {}%
+summary
+
+total book count: {}
+found by good readers: {}
+found by lubimy czytać: {}
+total found: {}
+percent found: {}%
+not found: {}
+percent not found: {}%
                     """.format(startCount, successGR, succesLC, succesTotal, succesTotalPercent, notFound, failTotalPercent)
                     print(resumeTxt)
                     if len(NotFound_isbnNoList)>0:

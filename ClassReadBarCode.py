@@ -62,6 +62,7 @@ class ReadBarcode():
 
                 # opening image
                 barcodeImg = self.cv2.imread(img)
+                # print("type", type(barcodeImg))
                 # converting to gray scale
                 barcodeImg = self.cv2.cvtColor(barcodeImg, self.cv2.COLOR_BGR2GRAY)
                 # extracting ISBN number from data read from barcode
@@ -88,9 +89,9 @@ Please check your source in picture %s.
         return isbnDic
 
 
-# dirPath = r'C:\Users\aleksandra.stempin\OneDrive - Accenture\!Sync\Downloads\imageToText2'
+# dirPath = r'C:\Users\Olenka\Desktop\barcodes'
 # rb = ReadBarcode(dirPath)
-# filesList = rb.ListFilesInDirectory()
+# # filesList = rb._ListFilesInDirectory()
 # # print(filesList)
 # dicBarcode = rb.ReadFromBarcode()
 # print(dicBarcode)

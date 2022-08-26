@@ -1,11 +1,19 @@
+# do not use latin extended characters in paths (cv2 package doesn't read them)
+
 import ClassBookDetailsToFileFromBarcode as BD
 import ClassBookDetailsReadBarCodeWebScraping as WS
 import ClassBookDetailsFromBarCodeGooDReadersFirst as GRWS
 import self
 import ClassFileHandling as fh
 import sys
-outDir = r"C:\Users\aleksandra.stempin\OneDrive - Accenture\!Sync\Downloads\testFilesFolder"
-dirPath = r'C:\Users\aleksandra.stempin\OneDrive - Accenture\!Sync\Downloads\NewBooks'
+
+# output directory to save book details files
+outDir = r"C:\Users\Olenka\Documents\bookDetailsPython\testFilesFolder"
+
+# directory with barcodes images
+dirPath = r"C:\Users\Olenka\Documents\bookDetailsPython\barcodes"
+
+# name for book details file, every file will be named fileName_currentDatetime
 fileName = "MyBookDetails"
 
 
