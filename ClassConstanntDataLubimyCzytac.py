@@ -23,5 +23,6 @@ class ConstanntDataLubimyCzytac():
     LC_publishDateXpath = "//dt[contains(text(), 'Data wydania')]/following-sibling::dd"
     LC_languageXpath = "//dt[contains(text(), 'Język')]/following-sibling::dd"
     LC_regExp = ". \(tom +[0-9]\)" # regular expression for book of series
+    LC_seriesPattern = r"(tom "
     LC_seriesXpath = "//span[contains(text(), 'Cykl')]/a"
     LC_isbnXpath = "//dt[contains(text(), 'ISBN')]/following-sibling::dd"

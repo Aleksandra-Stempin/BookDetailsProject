@@ -65,13 +65,16 @@ class WebScraping():
         # series and book in series
         try:
             series = _getBookAttribute(cdlc.LC_seriesXpath)
+            isSeries = cdlc.LC_seriesPattern in series
             regexList = re.findall(cdlc.LC_regExp, series)
+
             regexListLen = len(regexList)
-            if regexListLen == 1:
+            # if regexListLen == 1:
+            if isSeries:
                 # book in series
                 seriesList = series.split("(tom ")
                 seriesName = seriesList[0].strip()
-                bookOfSeries = seriesList[1]
+                bookOfSeries = seriesList[1].strip()
                 bookOfSeries = bookOfSeries.strip(")").strip()
                 series = seriesToFile = seriesName
                 bookOfSeriesToFile = bookOfSeries

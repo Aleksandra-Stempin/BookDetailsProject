@@ -10,14 +10,16 @@ class PingMe():
     global _successSoundPath
     global _failSoundPath
     _successSoundPath = r'sounds\ok.mp3'
+    _successSoundPath = 'sounds/ok.mp3'
     # _successSoundPath = r'C:\Users\Olenka\PycharmProjects\BookDetailsProject2\sounds\ok.mp3'
     _failSoundPath = r'sounds\notOk.mp3'
+
 
     def _PlaySound(self, soundName, infoText=""):
         try:
             print(infoText)
             if str(soundName).endswith(".mp3"):
-                playsound(soundName)
+                playsound(str(soundName))
             else:
                 print("Sound %s couldn't be played."%soundName)
         except Exception as e:
@@ -25,10 +27,10 @@ class PingMe():
             print("\n"+errMsg+"\n")
 
     def SuccessNotyfication(self):
-        PingMe._PlaySound(self, soundName= _successSoundPath, infoText="Everything ok")
+        PingMe._PlaySound(self, soundName= str(_successSoundPath), infoText="Everything ok")
 
 
     def FailNotyfication(self):
-        PingMe._PlaySound(self, soundName=_failSoundPath, infoText="Something bad has happened, I am so sorry.")
+        PingMe._PlaySound(self, soundName=str(_failSoundPath), infoText="Something bad has happened, I am so sorry.")
 
 

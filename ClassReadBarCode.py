@@ -59,7 +59,6 @@ class ReadBarcode():
                 imgName = img
                 # adding full path to img name
                 img = "%s\\%s" % (self.barcodeDir, img)
-
                 # opening image
                 barcodeImg = self.cv2.imread(img)
                 # print("type", type(barcodeImg))
