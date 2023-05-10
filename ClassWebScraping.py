@@ -6,6 +6,19 @@ from ClassConstanntDataGoogle import ConstanntDataGoogle as cdg
 from ClassConstanntDataLubimyCzytac import ConstanntDataLubimyCzytac as cdlc
 class WebScraping():
     global bookDet
+    def _getReguest(self, bookUrl):
+        try:
+            print("book url", bookUrl)
+            bookPage = requests.get(url=bookUrl, params=None)
+        except Exception as e:
+            errMsg= "\nerror in get request:\n"+str(e)+"\n"
+            print(errMsg)
+            raise Exception
+
+
+
+
+
     def GetBookDataFromWebScraping (self, bookUrl):
         bookAttribute = ""
         author = "no author"
@@ -28,12 +41,18 @@ class WebScraping():
         languageToFile = ""
         isbn = "no isbn"
         isbnToFile = ""
-        bookPage = requests.get(bookUrl)
+
+        print("book url", bookUrl)
+        bookPage = WebScraping._getReguest(self, bookUrl)
+
+        print("bookPage")
         bookDet = fromstring(bookPage.text)
+        print(" bookDet",  bookDet)
 
         def _getBookAttribute(xpath):
             bookAttribute = bookDet.xpath("{}//text()".format(xpath))[0]
             bookAttribute = str(bookAttribute).strip()
+            print(bookAttribute)
             return bookAttribute
 
         # author
@@ -46,6 +65,7 @@ class WebScraping():
             authorToFile = author
         except:
             pass
+        print("author", author)
 
         # title
         try:
@@ -53,6 +73,7 @@ class WebScraping():
             titleToFile = title
         except:
             pass
+        print("title", title)
 
         # original title
         try:
@@ -61,6 +82,7 @@ class WebScraping():
         except:
             originalTitle = title
             originalTitleToFile = titleToFile
+        print(" originalTitle",  originalTitle )
 
         # series and book in series
         try:

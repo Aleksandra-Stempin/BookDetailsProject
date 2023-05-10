@@ -7,6 +7,7 @@ import ClassSearchGoodReaders
 import ClassWebScrapingGoodReaders
 import self
 import ClassPingMe as ping
+import ClassPingMeWithSimpleaudio as pingSA
 from ClassWebScraping import WebScraping
 import ClassWebScraping
 
@@ -20,7 +21,8 @@ class BookDetailsReadBarCodeWebScraping():
             bd = ClassGetBookDetails.GetBookDetailsByIsbn(outDir=bookDetFilesDir)
             ws = ClassWebScraping.WebScraping()
             wsgr = ClassWebScrapingGoodReaders.WebScrapingGoodReaders()
-            p = ping.PingMe()
+            # p = ping.PingMe()
+            psa = pingSA.PingMeWithSimpleaudio()
 
             fh.CreateFile()
             bd.OpenDriver(headlessMode)
@@ -64,7 +66,8 @@ class BookDetailsReadBarCodeWebScraping():
             if deleteFile:
                 fh.DeleteFile()
             bd.CloseDriver()
-            p.SuccessNotyfication()
+            # p.SuccessNotyfication()
+            psa.succesNotification()
             # fh.DeleteEmptyFile()
         except Exception as e:
             bd.CreateScreenshot()
@@ -74,7 +77,8 @@ class BookDetailsReadBarCodeWebScraping():
             bd.CloseDriver()
             eStr = "Error in BookDetailsReadBarCodeWebScraping\nSomething went wrong\n%s" % (str(e))
             print(eStr)
-            p.FailNotyfication()
+            # p.FailNotyfication()
+            psa.failNotification()
 
 
 

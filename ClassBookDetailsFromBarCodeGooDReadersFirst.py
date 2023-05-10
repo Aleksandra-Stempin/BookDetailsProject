@@ -10,10 +10,12 @@ import ClassSearchGoodReaders
 import ClassWebScrapingGoodReaders
 import self
 import ClassPingMe as ping
+import ClassPingMeWithSimpleaudio as pmsa
 from ClassWebScraping import WebScraping
 import ClassWebScraping
 
 class BookDetailsFromBarCodeGooDReadersFirst():
+    e=""
     def GetBookDet(self, bookDetFilesDir, barcodeImgDir, bookDetFileName, headlessMode = False):
         deleteFile = True
         # creating objects of imported classes
@@ -23,6 +25,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
         ws = ClassWebScraping.WebScraping()
         wsgr = ClassWebScrapingGoodReaders.WebScrapingGoodReaders()
         p = ping.PingMe()
+        psa = pmsa.PingMeWithSimpleaudio()
         def _ValidateArg():
             """validates class arguments"""
             errMsg = ""
@@ -108,6 +111,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
                                 bd.ClearSearch()
                                 if bd.InputSearch(isbnNo):
                                     bookLink = bd.ReturnLink()
+                                    # print(bookLink)
                                     if len(bookLink)>5:
                                         bookDet = ws.GetBookDataFromWebScraping(bookLink)
                                         if len(bookDet)>=20:
@@ -167,7 +171,11 @@ percent not found: {}%
                         pass
 
 
-                p.SuccessNotyfication()
+                # p.SuccessNotyfication()
+                if len(resumeTxt)>5:
+                    psa.succesNotification()
+                else:
+                    raise Exception
             except Exception as err:
                 errMsg = "Issue in BookDetailsFromBarCodeGooDReadersFirst:\n{}".format(str(err))
                 print(errMsg)
@@ -181,7 +189,8 @@ percent not found: {}%
                     pass
                 if deleteFile:
                     fh.DeleteFile()
-                p.FailNotyfication()
+                # p.FailNotyfication()
+                psa.failNotification()
 
 
 

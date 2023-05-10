@@ -25,6 +25,7 @@ class GetBookDetailsByIsbn():
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.support.wait import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.common.action_chains import ActionChains
 
     def __init__(self, outDir):
         self.outDir = outDir
@@ -110,9 +111,16 @@ class GetBookDetailsByIsbn():
         """search by given isbn in lubimy czytać page using advanced google search"""
         # advance search input
         searchInputText = self.cdg.googleSearchInputText % (isbnNo)
+        # print("searchInputText", searchInputText)
+        searchInputText = searchInputText.strip()
         searchInput = driver.find_element(self.By.NAME, self.cdg.googleSearchName)
         searchInput.send_keys(searchInputText)
+        googleMagnifier = self.cdg.googleMagnifierXpath
+        time.sleep(2)
+        # action.move_to_element(googleMagnifier).click().perform()
         searchInput.send_keys(self.Keys.ENTER)
+        # searchInput.send_keys(self.Keys.ENTER)
+
         # checks if book can be found, checking message, that is is not found
         try:
             driver.find_element(self.By.XPATH, self.cdg.googleNotFoundXpath)
@@ -138,7 +146,6 @@ class GetBookDetailsByIsbn():
             time.sleep(2)
             driver.find_element(self.By.XPATH, self.cdg.googleLinkXpath).click()
             time.sleep(2)
-
             print("GoToLink in ok")
         except Exception as e:
             print("GoToLink in not ok,\n%s"%(str(e)))

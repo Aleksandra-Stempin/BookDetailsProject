@@ -4,6 +4,7 @@ import ClassGetBookDetails
 import ClassReadBarCode
 import self
 import ClassPingMe as ping
+import ClassPingMeWithSimpleaudio as pingSA
 
 class BookDetailsToFileFromBarcode():
 
@@ -14,6 +15,7 @@ class BookDetailsToFileFromBarcode():
             rb = ClassReadBarCode.ReadBarcode(barcodeDir=barcodeImgDir)
             bd = ClassGetBookDetails.GetBookDetailsByIsbn()
             p = ping.PingMe()
+            psa = pingSA.PingMeWithSimpleaudio()
             fh.CreateFile()
             print("bd.OpenDriver out start")
             bd.OpenDriver()
@@ -59,7 +61,7 @@ class BookDetailsToFileFromBarcode():
             bd.CloseDriver()
             fh.CloseFile()
             # raise ArithmeticError
-            p.SuccessNotyfication()
+            psa.SuccessNotyfication()
         except Exception as e:
             try:
                 fh.CloseFile()
@@ -67,7 +69,7 @@ class BookDetailsToFileFromBarcode():
                 pass
             errText = "Something went wrong\n%s"%(str(e))
             print(errText)
-            p.FailNotyfication()
+            psa.FailNotyfication()
 
 
 

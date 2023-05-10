@@ -17,8 +17,9 @@ class PingMe():
 
     def _PlaySound(self, soundName, infoText=""):
         try:
-            print(infoText)
-            if str(soundName).endswith(".mp3"):
+            print("\n"+infoText+"\n")
+            # print("sound is file", os.path.exists(soundName))
+            if str(soundName).endswith(".mp3") and os.path.exists(soundName):
                 playsound(str(soundName))
             else:
                 print("Sound %s couldn't be played."%soundName)

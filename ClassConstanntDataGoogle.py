@@ -10,6 +10,7 @@ class ConstanntDataGoogle():
     googleBookLinkXpath = "//div[@class='yuRUbf']/a"
     googleSearchForGoodReaders = "https://www.google.com/search?q=goodreads.com"
     gooleInputSearchInGoodReaders = '//input[@jsname = "YPqjbf"]'
+    googleMagnifierXpath = "//div[@class='iblpc']"
 
     # # lubimy czytać
     # LC_cokkiesOkBututID = "onetrust-accept-btn-handler"
