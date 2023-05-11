@@ -1,3 +1,4 @@
+import ssl
 import time
 
 from ClassConstanntDataGoodReaders import ConstanntDataGoodReaders as cdgr
@@ -6,6 +7,7 @@ import self
 import re
 from lxml.html import fromstring
 import re
+from ClassWebScrapingGeneral import WebScrapingGeneral as wsg
 
 class WebScrapingGoodReaders():
     global bookDet
@@ -64,6 +66,18 @@ class WebScrapingGoodReaders():
         isbn = "no isbn"
         isbnToFile = ""
         try:
+
+            # def _getReguest(bookUrl):
+            #     try:
+            #         bookPage = requests.get(url=bookUrl
+            #                                 , verify=ssl.CERT_NONE)
+            #         # bookPage = requests.get(url=bookUrl)
+            #         return bookPage
+            #     except Exception as e:
+            #         errMsg = "\nerror in get request:\n" + str(e) + "\n"
+            #         print(errMsg)
+            #         raise Exception
+
             def _getBookAttribute(xpath):
                 bookAttribute = bookDet.xpath("{}//text()".format(xpath))[0]
                 bookAttribute = str(bookAttribute).strip()
@@ -73,8 +87,9 @@ class WebScrapingGoodReaders():
             bookUrl = cdgr.GR_bookUrl % (isbnNo)
             # print(bookUrl)
             time.sleep(2)
-            bookPage = requests.get(bookUrl)
-            bookDet = fromstring(bookPage.text)
+
+
+            bookDet = wsg.getBookDetFromWebScraping(self, bookUrl)
 
             # checking no results element
             try:

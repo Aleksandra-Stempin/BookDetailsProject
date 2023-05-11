@@ -1,21 +1,31 @@
+import ssl
+
 import requests
 import self
 import re
 from lxml.html import fromstring
 from ClassConstanntDataGoogle import ConstanntDataGoogle as cdg
 from ClassConstanntDataLubimyCzytac import ConstanntDataLubimyCzytac as cdlc
-class WebScraping():
+from ClassWebScrapingGeneral import WebScrapingGeneral as wsg
+import time
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
+class WebScrapingLC():
     global bookDet
-    def _getReguest(self, bookUrl):
-        try:
-            print("book url", bookUrl)
-            bookPage = requests.get(url=bookUrl, params=None)
-        except Exception as e:
-            errMsg= "\nerror in get request:\n"+str(e)+"\n"
-            print(errMsg)
-            raise Exception
-
-
+    # def _getReguest(self, bookUrl):
+    #     try:
+    #
+    #         bookPage = requests.get(url= bookUrl
+    #                                 ,verify=ssl.CERT_NONE)
+    #
+    #         # bookPage = requests.get(url=bookUrl)
+    #         return bookPage
+    #     except Exception as e:
+    #         errMsg= "\nerror in get request:\n"+str(e)+"\n"
+    #         print(errMsg)
+    #         raise Exception
 
 
 
@@ -42,17 +52,21 @@ class WebScraping():
         isbn = "no isbn"
         isbnToFile = ""
 
-        print("book url", bookUrl)
-        bookPage = WebScraping._getReguest(self, bookUrl)
+        # print("book url", bookUrl)
+        # bookPage = WebScrapingLC._getReguest(self, bookUrl)
+        # bookPage = wsg.getReguestFromWebScraping(self, bookUrl)
 
-        print("bookPage")
-        bookDet = fromstring(bookPage.text)
-        print(" bookDet",  bookDet)
+        # print("bookPage")
+        # bookDet = fromstring(bookPage.text)
+
+        # bookDet = wsg.formStringFromWebScraping(self, bookPage)
+        bookDet = wsg.getBookDetFromWebScraping(self,bookUrl)
+        # print(" bookDet",  bookDet)
 
         def _getBookAttribute(xpath):
             bookAttribute = bookDet.xpath("{}//text()".format(xpath))[0]
             bookAttribute = str(bookAttribute).strip()
-            print(bookAttribute)
+            # print(bookAttribute)
             return bookAttribute
 
         # author
@@ -65,7 +79,7 @@ class WebScraping():
             authorToFile = author
         except:
             pass
-        print("author", author)
+        # print("author", author)
 
         # title
         try:
@@ -73,7 +87,7 @@ class WebScraping():
             titleToFile = title
         except:
             pass
-        print("title", title)
+        # print("title", title)
 
         # original title
         try:
@@ -82,7 +96,7 @@ class WebScraping():
         except:
             originalTitle = title
             originalTitleToFile = titleToFile
-        print(" originalTitle",  originalTitle )
+        # print(" originalTitle",  originalTitle )
 
         # series and book in series
         try:

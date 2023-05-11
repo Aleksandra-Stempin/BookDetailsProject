@@ -11,8 +11,8 @@ import ClassWebScrapingGoodReaders
 import self
 import ClassPingMe as ping
 import ClassPingMeWithSimpleaudio as pmsa
-from ClassWebScraping import WebScraping
-import ClassWebScraping
+from ClassWebScrapingLC import WebScrapingLC
+import ClassWebScrapingLC
 
 class BookDetailsFromBarCodeGooDReadersFirst():
     e=""
@@ -22,7 +22,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
         fh = ClassFileHandling.CreateWriteReadCloseFiles(filesOutDir=bookDetFilesDir, fileName=bookDetFileName)
         rb = ClassReadBarCode.ReadBarcode(barcodeDir=barcodeImgDir)
         bd = ClassGetBookDetails.GetBookDetailsByIsbn(outDir=bookDetFilesDir)
-        ws = ClassWebScraping.WebScraping()
+        ws = ClassWebScrapingLC.WebScrapingLC()
         wsgr = ClassWebScrapingGoodReaders.WebScrapingGoodReaders()
         p = ping.PingMe()
         psa = pmsa.PingMeWithSimpleaudio()

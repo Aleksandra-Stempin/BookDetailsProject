@@ -8,8 +8,8 @@ import ClassWebScrapingGoodReaders
 import self
 import ClassPingMe as ping
 import ClassPingMeWithSimpleaudio as pingSA
-from ClassWebScraping import WebScraping
-import ClassWebScraping
+from ClassWebScrapingLC import WebScrapingLC
+import ClassWebScrapingLC
 
 class BookDetailsReadBarCodeWebScraping():
     def GetBookDet(self, bookDetFilesDir, barcodeImgDir, bookDetFileName, headlessMode = False):
@@ -19,7 +19,7 @@ class BookDetailsReadBarCodeWebScraping():
             fh = ClassFileHandling.CreateWriteReadCloseFiles(filesOutDir=bookDetFilesDir, fileName=bookDetFileName)
             rb = ClassReadBarCode.ReadBarcode(barcodeDir=barcodeImgDir)
             bd = ClassGetBookDetails.GetBookDetailsByIsbn(outDir=bookDetFilesDir)
-            ws = ClassWebScraping.WebScraping()
+            ws = ClassWebScraping.WebScrapingLC()
             wsgr = ClassWebScrapingGoodReaders.WebScrapingGoodReaders()
             # p = ping.PingMe()
             psa = pingSA.PingMeWithSimpleaudio()
