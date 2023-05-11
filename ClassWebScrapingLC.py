@@ -14,18 +14,6 @@ from urllib3.util.retry import Retry
 
 class WebScrapingLC():
     global bookDet
-    # def _getReguest(self, bookUrl):
-    #     try:
-    #
-    #         bookPage = requests.get(url= bookUrl
-    #                                 ,verify=ssl.CERT_NONE)
-    #
-    #         # bookPage = requests.get(url=bookUrl)
-    #         return bookPage
-    #     except Exception as e:
-    #         errMsg= "\nerror in get request:\n"+str(e)+"\n"
-    #         print(errMsg)
-    #         raise Exception
 
 
 

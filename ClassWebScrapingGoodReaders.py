@@ -66,18 +66,6 @@ class WebScrapingGoodReaders():
         isbn = "no isbn"
         isbnToFile = ""
         try:
-
-            # def _getReguest(bookUrl):
-            #     try:
-            #         bookPage = requests.get(url=bookUrl
-            #                                 , verify=ssl.CERT_NONE)
-            #         # bookPage = requests.get(url=bookUrl)
-            #         return bookPage
-            #     except Exception as e:
-            #         errMsg = "\nerror in get request:\n" + str(e) + "\n"
-            #         print(errMsg)
-            #         raise Exception
-
             def _getBookAttribute(xpath):
                 bookAttribute = bookDet.xpath("{}//text()".format(xpath))[0]
                 bookAttribute = str(bookAttribute).strip()
