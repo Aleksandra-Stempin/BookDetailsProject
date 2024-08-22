@@ -4,10 +4,13 @@ class ConstanntDataGoogle():
     googleAcceptCookiesButtonID = "L2AGLb"
     googleSearchName = "q"
     googleSearchInputText = r"isbn %s site:lubimyczytac.pl"
+    # googleSearchInputText = "//h3[text()[contains(.,'Książka w')]]/.."
     googleNotFoundXpath = "//div[@class='card-section']/ul/li"
     googleNotFoundText = "Nie znaleziono książki z ISBN %s w serwisie lubimy czytać."
     googleLinkXpath = "//h3[@class='LC20lb MBeuO DKV0Md']"
     googleBookLinkXpath = "//div[@class='yuRUbf']/a"
+    googleBookLinkXpath = "//h3[text()[contains(.,'Książka w')]]/.."
+
     googleSearchForGoodReaders = "https://www.google.com/search?q=goodreads.com"
     gooleInputSearchInGoodReaders = '//input[@jsname = "YPqjbf"]'
     googleMagnifierXpath = "//div[@class='iblpc']"

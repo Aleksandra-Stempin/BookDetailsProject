@@ -2,15 +2,21 @@ import os
 import time
 from telnetlib import EC
 
+import selenium
 import self
 from selenium.common.exceptions import ElementNotVisibleException, ElementNotSelectableException, TimeoutException
+from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from seleniumbase import Driver
+from webdriver_manager.chrome import ChromeDriverManager
+import selenium.webdriver as wb
 
 
 class GetBookDetailsByIsbn():
-    # import selenium
+    import selenium
     import selenium.webdriver as wb
+    import selenium.webdriver
     import selenium.webdriver.chrome.service as ser
     from selenium.webdriver.chrome.service import Service as ser
     import re
@@ -21,6 +27,7 @@ class GetBookDetailsByIsbn():
     # import selenium.webdriver.support.wait as wait
     import datetime
     from webdriver_manager.chrome import ChromeDriverManager as cdm
+    from webdriver_manager.chrome import ChromeDriverManager
     from selenium.webdriver.common.by import By
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.support.wait import WebDriverWait
@@ -31,33 +38,65 @@ class GetBookDetailsByIsbn():
         self.outDir = outDir
         pass
 
-    def OpenDriver(self, headlessMode=False):
-        """opens (and installs latest version of) driver"""
+    def OpenDriver(self,headlessMode=False):
+        # global my_driver
+        # print("OpenDriver start")
         global driver
         global action
         global wait
-        ChromeDriverPath = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
-        s = self.ser(self.cdm().install())
-        # s = self.ser()
-        o = self.wb.ChromeOptions()
-        o.add_argument("--incognito")
-        o.add_argument("--disable-extensions")
-        o.add_argument("--disable-gpu")
-        o.add_argument('disable-notifications')
-        o.add_argument('disable-infobars')
-        # headless mode
+        driver_path = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe"
+        options = selenium.webdriver.ChromeOptions()
+        options.add_argument('--disable-notifications')
+        options.add_argument("--disable-search-engine-choice-screen");
+        options.add_argument("--incognito")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-gpu")
+        options.add_argument('disable-notifications')
+        options.add_argument('disable-infobars')
         if headlessMode:
-            o.add_argument("headless")
-            o.headless = True
-        driver = self.wb.Chrome(options=o, service=s)
-        # driver = webdriver.Chrome(ChromeDriverPath)
+            options.add_argument("headless")
+            options.headless = True
+        driver = wb.Chrome(options=options)
+        # driver = wb.Chrome(executable_path=driver_path, options=options)
         driver.maximize_window()
-        action = self.wb.ActionChains(driver)
-        driver.implicitly_wait(10)
-        # wait = WebDriverWait(driver, timeout=10, poll_frequency=1,
-        #                      ignored_exceptions=[ElementNotVisibleException, ElementNotSelectableException])
-        # driver.set_page_load_timeout(30)
-        # driver.implicitly_wait(30)
+        # print("open driver stop")
+        # return my_driver
+
+    # def OpenDriver(self, headlessMode=False):
+    #     """opens (and installs latest version of) driver"""
+    #     print("OpenDriver start")
+    #     global driver
+    #     global action
+    #     global wait
+    #     ChromeDriverPath = "C:/Program Files/Google/Chrome/Application/chromedriver.exe"
+    #     s = self.ser(self.cdm().install())
+    #     # s = self.ser()
+    #     o = self.wb.ChromeOptions()
+    #     o.add_argument("--incognito")
+    #     o.add_argument("--disable-extensions")
+    #     o.add_argument("--disable-gpu")
+    #     o.add_argument('disable-notifications')
+    #     o.add_argument('disable-infobars')
+    #     # headless mode
+    #     if headlessMode:
+    #         o.add_argument("headless")
+    #         o.headless = True
+    #     # driver = self.wb.Chrome(options=o, service=s)
+    #
+    #
+    #     # driver = webdriver.Chrome(ChromeDriverPath)
+    #     driver = webdriver.Chrome(service=s(ChromeDriverManager().install()))
+    #     driver.maximize_window()
+    #     action = self.wb.ActionChains(driver)
+    #     driver.implicitly_wait(10)
+    #     print("OpenDriver end")
+    #     # wait = WebDriverWait(driver, timeout=10, poll_frequency=1,
+    #     #                      ignored_exceptions=[ElementNotVisibleException, ElementNotSelectableException])
+    #     # driver.set_page_load_timeout(30)
+    #     # driver.implicitly_wait(30)
+    #
+
+
 
     def CloseDriver(self):
         """closes driver"""
@@ -110,6 +149,9 @@ class GetBookDetailsByIsbn():
     def InputSearch(self, isbnNo):
         """search by given isbn in lubimy czytać page using advanced google search"""
         # advance search input
+        # print("InputSearch start")
+        # print("isbnNo ", isbnNo)
+        # print(self.cdg.googleSearchInputText)
         searchInputText = self.cdg.googleSearchInputText % (isbnNo)
         # print("searchInputText", searchInputText)
         searchInputText = searchInputText.strip()
@@ -120,7 +162,7 @@ class GetBookDetailsByIsbn():
         # action.move_to_element(googleMagnifier).click().perform()
         searchInput.send_keys(self.Keys.ENTER)
         # searchInput.send_keys(self.Keys.ENTER)
-
+        # print(" searchInput.send_keys(self.Keys.ENTER)")
         # checks if book can be found, checking message, that is is not found
         try:
             driver.find_element(self.By.XPATH, self.cdg.googleNotFoundXpath)

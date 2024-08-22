@@ -26,6 +26,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
         wsgr = ClassWebScrapingGoodReaders.WebScrapingGoodReaders()
         p = ping.PingMe()
         psa = pmsa.PingMeWithSimpleaudio()
+
         def _ValidateArg():
             """validates class arguments"""
             errMsg = ""
@@ -55,6 +56,7 @@ class BookDetailsFromBarCodeGooDReadersFirst():
                 # creating dictionary with ISBN numbers and image's names
                 isbnDic = rb.ReadFromBarcode()
                 isbnList = list(isbnDic.keys())
+                print("isbnList", str(isbnList))
                 isbnNoList = []
                 # list of ISBN numbers that haven't been found in Good Readers page and will be searched for in lubimy
                 # czytac
@@ -102,14 +104,20 @@ class BookDetailsFromBarCodeGooDReadersFirst():
                         # isbnNoListSucces = isbnNoListLC
                         print("\nLubimy czytac start")
                         bd.OpenDriver(headlessMode)
+                        # bd.OpenDriver()
                         bd.OpenGooglePage()
+                        # print("bd.OpenGooglePage()")
                         bd.AgreeGoogleCookies()
+                        # print("bd.AgreeGoogleCookies()")
                         for isbnNo in LC_isbnNoList:
                             try:
                                 imgText = "\nImage: %s isbn: %s" % (isbnDic.get(isbnNo),isbnNo)
                                 print(imgText)
                                 bd.ClearSearch()
+                                # time.sleep(5)
+                                # print("bd.ClearSearch()")
                                 if bd.InputSearch(isbnNo):
+                                    # print("bd.InputSearch(isbnNo):")
                                     bookLink = bd.ReturnLink()
                                     # print(bookLink)
                                     if len(bookLink)>5:

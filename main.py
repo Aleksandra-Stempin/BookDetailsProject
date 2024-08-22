@@ -10,11 +10,11 @@ import ClassPingMe as pm
 import ClassPingMeWithSimpleaudio as pmsa
 
 # output directory to save book details files
-outDir = r"C:\Users\Olenka\Documents\bookDetailsPython\testFilesFolder"
-outDir = r"C:\Users\Olenka\Desktop\boook"
-# directory with barcodes images
-dirPath = r"C:\Users\Olenka\Documents\bookDetailsPython\barcodes"
-dirPath=r"C:\Users\Olenka\Desktop\boook"
+# outDir = r"C:\Users\Olenka\Documents\bookDetailsPython\testFilesFolder"
+# outDir = r"C:\Users\Olenka\Desktop\book"
+# # directory with barcodes images
+# dirPath = r"C:\Users\Olenka\Documents\bookDetailsPython\barcodes"
+# dirPath=r"C:\Users\Olenka\Desktop\boook"
 dirPath=r"C:\Users\aleksandra.stempin\OneDrive - Accenture\!Sync\Downloads\NewBooks"
 # dirPath=r"C:\book"
 

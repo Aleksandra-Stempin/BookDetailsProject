@@ -17,13 +17,14 @@ class BookDetailsToFileFromBarcode():
             p = ping.PingMe()
             psa = pingSA.PingMeWithSimpleaudio()
             fh.CreateFile()
-            print("bd.OpenDriver out start")
+            # print("bd.OpenDriver out start")
             bd.OpenDriver()
-            print("bd.OpenDriver out end()")
+            # print("bd.OpenDriver out end()")
             isbnDic = rb.ReadFromBarcode()
             isbnNoList = isbnDic.keys()
             bd.OpenGooglePage()
             bd.AgreeGoogleCookies()
+            print("bd.OpenGooglePage(), gdasgdsa, bd.AgreeGoogleCookies()")
             for isbnNo in isbnNoList:
                 try:
                     imgText = "\nImage: %s" % (isbnDic.get(isbnNo))

@@ -5,7 +5,6 @@ import importlib.util
 successfullyInstalledPackages = []
 alreadyInstalledPackages = []
 missingPackages = []
-
 # packagesList = ["pandas", "playsound", "ssl", "Django"]
 packagesList=["selenium"
 ,"os"
@@ -22,12 +21,13 @@ packagesList=["selenium"
 ,"requests","urllib3"
 ,"ssl"
 ,"lxml.html"
+, "lxml"
 ]
 
 
 for package in packagesList:
     packageInstalled = (importlib.util.find_spec(package) is not None)
-    print(package, packageInstalled)
+    # print(package, packageInstalled)
     if not packageInstalled:
         try:
             subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
